@@ -12,8 +12,8 @@ MongoClient.connect(url, function(err, db) {
         dbo.collection('customers').insertOne(myObj, function(err,res) {
             if(err) throw err;
             console.log("record inserted");
-            var query = {address:"Park 37"};
-            dbo.collection('customers').find(query).toArray(function(err, result) {
+            var mySort = {name:-1};
+            dbo.collection('customers').find().sort(mySort).toArray(function(err, result) {
                 if(err) throw err;
                 console.log(result);
                 db.close();
