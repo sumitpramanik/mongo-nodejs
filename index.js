@@ -11,9 +11,11 @@ MongoClient.connect(url, function(err, db) {
         var myObj = {name : "Company 1", address:"Highway 37"};
         dbo.collection('customers').insertOne(myObj, function(err,res) {
             if(err) throw err;
-            dbo.collection('customers').findOne({}, function(err, result) {
+            console.log("record inserted");
+            var query = {address:"Park 37"};
+            dbo.collection('customers').find(query).toArray(function(err, result) {
                 if(err) throw err;
-                console.log(result.name);
+                console.log(result);
                 db.close();
             });
         });
